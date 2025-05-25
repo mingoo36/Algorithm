@@ -1,5 +1,10 @@
+import sys
+
+def input():
+    return sys.stdin.readline()
+
 s = int(input())
-status = [0] + list(map(int, input().split())) 
+status = [0] + list(map(int, input().split()))  # 1번 인덱스부터
 
 n = int(input())
 for _ in range(n):
