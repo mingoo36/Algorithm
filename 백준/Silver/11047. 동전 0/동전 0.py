@@ -1,9 +1,13 @@
-n,m = map(int, input().split())
-count = 0
-lst = [int(input()) for _ in range(n)][::-1]
+n, money = map(int, input().split())
 
-for i in lst:
-  count+= m//i
-  m = m%i
+coins = sorted([int(input()) for _ in range(n)],reverse=True)
 
-print(count)
+result = 0
+
+for i in coins:
+    if i > money:
+        continue
+    result += money // i
+    money %= i
+
+print(result)
