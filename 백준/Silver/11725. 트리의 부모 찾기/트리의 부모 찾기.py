@@ -11,7 +11,7 @@ for _ in range(n-1):
     graph[a].append(b)
     graph[b].append(a)
 
-result = [[] for _ in range(n+1)]
+result = [0] * (n+1)
 
 queue = deque()
 queue.append(1)
