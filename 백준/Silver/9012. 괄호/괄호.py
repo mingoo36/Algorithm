@@ -1,22 +1,22 @@
 n = int(input())
 
-
 for _ in range(n):
-  stack = []
-  x = input()
-  valid = True
-  
-  for i in x:
-    if i == '(':
-      stack.append(i)
-    else:
-      if stack:
-        stack.pop()
-      else:
-        valid = False
-        break
+    x = input()
+    stack = []
+    ps = True
+    for i in x:
+
+        if i == '(':
+            stack.append(i)
         
-  if valid and not stack:
-    print("YES")
-  else:
-    print("NO")
+        elif i == ')':
+            if stack:
+                stack.pop()
+            else:
+                ps = False
+                break 
+        
+    if stack:
+        ps = False
+
+    print('YES' if ps else 'NO')
