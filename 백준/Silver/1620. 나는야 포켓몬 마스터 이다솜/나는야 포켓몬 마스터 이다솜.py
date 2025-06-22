@@ -1,12 +1,23 @@
+import sys
+input = sys.stdin.readline
+
 n, m = map(int, input().split())
 
-x = [input() for _ in range(n)]
-x_dic = {value:idx+1 for idx, value in enumerate(x)}
 
-y = [input() for _ in range(m)]
 
-for i in y:
-  if i.isdigit():
-    print(x[int(i)-1])
-  else:
-    print(x_dic[i])
+name_list = [None] * (n+1)
+name_dict = {}
+
+for i in range(1,n+1):
+    pok  = input().rstrip()
+    name_list[i] = pok
+    name_dict[pok] = i
+
+
+for _ in range(m):
+    x = input().rstrip()
+
+    if x.isdigit():
+        print(name_list[int(x)])
+    else:
+        print(name_dict[x])
