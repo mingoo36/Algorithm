@@ -1,9 +1,9 @@
+import sys
+input = sys.stdin.readline
+
 n, game = input().split()
 
-people = set()
-
-for _ in range(int(n)):
-    people.add(input())
+people = {input() for _ in range(int(n))}
 
 if game == 'Y':
     print(len(people))
