@@ -1,24 +1,21 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-result = 0
-p = []
-
-for _ in range(n):
-    l,h = map(int, input().split())
-    p.append((l,h))
-
+p = [tuple(map(int, input().split())) for _ in range(n)]
 p.sort()
 
-tmp = 0 
-for (l,h) in p:
+result = 0
+
+for i, (l,h) in enumerate(p):
     if h > result:
         result = h
-        idx = tmp
-    tmp += 1
+        idx = i
 
 height = p[0][1]
 
 for i in range(idx):
-    if height < p[i+1][1]:
+    if p[i+1][1] > height:
         result += height * (p[i+1][0] - p[i][0])
         height = p[i+1][1]
     else:
@@ -27,7 +24,7 @@ for i in range(idx):
 height = p[-1][1]
 
 for i in range(n-1, idx, -1):
-    if height < p[i-1][1]:
+    if p[i-1][1] > height:
         result += height * (p[i][0] - p[i-1][0])
         height = p[i-1][1]
     else:
