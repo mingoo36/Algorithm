@@ -1,13 +1,12 @@
 t = int(input())
 
-dp = [1] * 10001
+dp = [0] * 10001
+dp[0] = 1
 
-for i in range(2, 10001):
-    dp[i] += dp[i-2]
+for i in [1, 2, 3]:
+    for j in range(i, 10001):
+        dp[j] += dp[j - i]
 
-for i in range(3, 10001):
-    dp[i] += dp[i-3]
-
-for _ in range(t):
+for i in range(t):
     n = int(input())
     print(dp[n])
