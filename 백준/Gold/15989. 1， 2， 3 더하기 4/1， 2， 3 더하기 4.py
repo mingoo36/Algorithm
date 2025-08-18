@@ -1,12 +1,14 @@
+import sys
+input = sys.stdin.readline
+
 t = int(input())
 
-dp = [0] * 10001
-dp[0] = 1
+dp = [1] * 10001
 
-for i in [1, 2, 3]:
-    for j in range(i, 10001):
-        dp[j] += dp[j - i]
+for i in [2,3]:
+    for j in range(i,10001):
+        dp[j] += dp[j-i]
 
-for i in range(t):
+for _ in range(t):
     n = int(input())
     print(dp[n])
