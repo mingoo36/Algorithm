@@ -4,32 +4,46 @@ input = sys.stdin.readline
 n = int(input())
 balls = input().strip()
 
-def count_balls(color, to_left):
-    total = balls.count(color)
+if len(set(balls)) == 1:
+    print(0)
+    sys.exit(0)
 
-    if to_left:
-        cnt = 0
-        for i in balls:
-            if i == color:
-                cnt += 1
-            else:
-                break
-        return total - cnt
-    
+total_R = balls.count('R')
+total_B = n - total_R
+
+lR = 0
+for i in balls:
+    if i == 'R':
+        lR += 1
     else:
-        cnt = 0
-        for i in reversed(balls):
-            if i == color:
-                cnt += 1
-            else:
-                break
-        return total - cnt
-    
+        break
+
+rR = 0
+for i in reversed(balls):
+    if i == 'R':
+        rR += 1
+    else:
+        break
+
+lB = 0
+for i in balls:
+    if i == 'B':
+        lB += 1
+    else:
+        break
+
+rB = 0
+for i in reversed(balls):
+    if i == 'B':
+        rB += 1
+    else:
+        break
+
 result = min(
-    count_balls('R', True),
-    count_balls('R', False),
-    count_balls('B', True),
-    count_balls('R', False)
+    total_R - lR,
+    total_R - rR,
+    total_B - lB,
+    total_B - rB
 )
 
 print(result)
