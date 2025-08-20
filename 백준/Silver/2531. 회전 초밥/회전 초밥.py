@@ -1,7 +1,9 @@
+import sys
+input = sys.stdin.readline
+
 n, d, k, c = map(int, input().split())
 
 belt = [int(input()) for _ in range(n)]
-
 belt += belt
 
 result = 0
@@ -12,5 +14,5 @@ for i in range(n):
 
     if curr > result:
         result = curr
-        
+
 print(result)
