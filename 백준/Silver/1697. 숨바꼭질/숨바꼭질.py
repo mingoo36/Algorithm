@@ -1,19 +1,27 @@
-import sys
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-def bfs(v):
-    q = deque([v])
-    while q:
-        v = q.popleft()
-        if v == k:
-            return array[v]
-        for next_v in (v-1, v+1, 2*v):
-            if 0 <= next_v < MAX and not array[next_v]:
-                array[next_v] = array[v] + 1
-                q.append(next_v)
+n, k = map(int, input().split())
 
+def dfs(n,k):
+    if n >= k:
+        return n - k
+    
+    Max = 100000
+    visited = [False] * (Max + 1)
+    visited[n] = True
+    queue = deque([(n,0)])
 
-MAX = 100001
-n, k = map(int, sys.stdin.readline().split())
-array = [0] * MAX
-print(bfs(n))
+    while queue:
+        x, t = queue.popleft()
+
+        if x == k:
+            return t
+        
+        for nx in (x-1, x+1, x*2):
+            if 0 <= nx <= Max and not visited[nx]:
+                visited[nx] = True
+                queue.append((nx, t+1))
+        
+print(dfs(n,k))
